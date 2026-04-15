@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledDiv = styled.header`
     padding: 8px;
     background-color: #ee9006;
+    font-size: 20px;
 `;
 const StyledHeader = styled.h1`
     font-family: Calibri;
@@ -13,7 +14,7 @@ const StyledHeader = styled.h1`
 
 
 const StyledNav = styled.nav`
-  padding: 2px;
+  padding: 8px;
   margin: 10px;
     text-align: center;
     
@@ -22,7 +23,7 @@ const StyledNav = styled.nav`
 const StyledLink = styled(Link)`
     padding: 4px;
     margin: 8px;
-    font-size: 1.25rem;
+    font-size: 24px;
     font-family: Arial;
     font-weight: bold;
     text-decoration: none;
