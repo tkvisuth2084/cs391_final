@@ -1,3 +1,4 @@
+
 export async function GET() {
     const res = await fetch("https://api.rescuegroups.org/v5/public/animals/search/available/", {
         method: "POST",
