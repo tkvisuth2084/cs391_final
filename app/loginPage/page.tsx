@@ -4,7 +4,7 @@ import { useState} from 'react';
 
 const StyledPage = styled.main`
     min-height: 100vh;
-    background-color: #dfd6d6;`
+    background-color: #ffedce;`
 const StyledCard = styled.div`
     background-color: #fdfdfd;
     border-radius: 15px;

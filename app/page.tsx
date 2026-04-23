@@ -2,7 +2,13 @@ import Image from "next/image";
 
 import styled from "styled-components";
 import Link from "next/link";
-const StyledSecondPart = styled.div``
+
+const StyledFooter = styled.footer`
+`
+const StyledSecondPart = styled.div`
+padding: 30px;
+    margin-bottom: 30px;
+`
 const StyledButton = styled(Link)`
 background-color: white;
     color:black;
@@ -93,6 +99,7 @@ export default function Home() {
           <StyledSecondPart>
           <StyledContext>Pawfinder is your gateway for finding a nearby pet nearby you! With over 3 million users, we have matched dogs, cats, and even horses to loving homes! Join our community and find your new companion</StyledContext>
           </StyledSecondPart>
+          <StyledFooter><StyledContext>All rights reserved </StyledContext></StyledFooter>
      </StyledWrapper>
 
   );
