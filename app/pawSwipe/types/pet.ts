@@ -1,4 +1,4 @@
-export interface Pet {
+type Pet = {
     id: string;
     attributes: {
         name: string;
