@@ -139,16 +139,21 @@ export default function LoginPage() {
                 <StyledHeader>Password</StyledHeader>
                 <StyledInput
                     type="password"
-                    placeholder="enter your desired password"
+                    placeholder="enter your password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                 />
-                <StyledInput
-                    type="password"
-                    placeholder="confirm your password"
-                    value={confirmPassword}
-                    onChange={e => setConfirmPassword(e.target.value)}
-                />
+                {!isLogin && (
+                    <>
+                        <StyledHeader>Confirm Password</StyledHeader>
+                        <StyledInput
+                            type="password"
+                            placeholder="confirm your password"
+                            value={confirmPassword}
+                            onChange={e => setConfirmPassword(e.target.value)}
+                        />
+                    </>
+                )}
 
 
                 <StyledButton onClick={isLogin ? handleLogin : handleSignUp}>

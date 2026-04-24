@@ -255,7 +255,7 @@ export default function ProfilePage() {
                 {/* ── Avatar + name ── */}
                 <AvatarSection>
                     {avatarUrl
-                        ? <Avatar src={avatarUrl} alt="Profile picture" />
+                        ? <Avatar src={avatarUrl || "https://cdn2.thecatapi.com/images/8pv.jpg"} alt="Profile picture" />
                         : <AvatarFallback>{name.charAt(0).toUpperCase()}</AvatarFallback>
                     }
                     <AvatarInfo>
