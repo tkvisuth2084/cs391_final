@@ -113,6 +113,7 @@ export default function PawSwipe() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [showMatch, setShowMatch] = useState(false);
     const [liked, setLiked] = useState(false);
+    const [likedPets, setLikedPets] = useState<string[]>([]);
 
     if (error) return <h2>Error</h2>;
     if (!data) return <h2>Loading...</h2>;
@@ -121,6 +122,7 @@ export default function PawSwipe() {
     const next = () => { setCurrentIndex(i => i + 1); setLiked(false); };
 
     const handleHeart = () => {
+        if(!liked) setLikedPets(prevLikedPets => [...prevLikedPets, pet.attributes.name]);
         setLiked(true);
         setShowMatch(true);
         setTimeout(() => setShowMatch(false), 1800);
