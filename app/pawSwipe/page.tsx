@@ -107,6 +107,12 @@ const MatchBanner = styled.div`
     pointer-events: none;
 `;
 
+const LikedList = styled.p`
+    color: #e88504;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    width: 420px;
+`;
 
 export default function PawSwipe() {
     const { data, error } = useSWR("/api/pet", fetcher);
@@ -122,7 +128,7 @@ export default function PawSwipe() {
     const next = () => { setCurrentIndex(i => i + 1); setLiked(false); };
 
     const handleHeart = () => {
-        if(!liked) setLikedPets(prevLikedPets => [...prevLikedPets, pet.attributes.name]);
+        if (!liked) setLikedPets(prev => [...prev, pet.attributes.name]);
         setLiked(true);
         setShowMatch(true);
         setTimeout(() => setShowMatch(false), 1800);
@@ -152,6 +158,9 @@ export default function PawSwipe() {
                 <ArrowButton onClick={prev} disabled={currentIndex === 0}>◀</ArrowButton>
                 <ArrowButton onClick={next} disabled={currentIndex === data.length - 1}>▶</ArrowButton>
             </ButtonContainer>
+            {likedPets.length > 0 && (
+                <LikedList>🧡 {likedPets.join(", ")}</LikedList>
+            )}
         </Container>
     );
 }
