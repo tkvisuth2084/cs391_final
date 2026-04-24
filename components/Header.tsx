@@ -43,6 +43,7 @@ export default function Header() {
                 <StyledLink href="/loginPage">Login</StyledLink>
                 <StyledLink href="/pawSwipe">Paw Swipe</StyledLink>
                 <StyledLink href="/pawFinder">Paw Finder</StyledLink>
+                <StyledLink href="/profile">Profile</StyledLink>
             </StyledNav>
         </StyledDiv>
     );
