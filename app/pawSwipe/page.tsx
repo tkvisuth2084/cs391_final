@@ -1,10 +1,15 @@
+//Name: Napasorn Visuthiwat BU ID: U29608302 wrote this file
+
 "use client";
 import useSWR from "swr";
 import styled from "styled-components";
 import { useState } from "react";
 
+//fetch data
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
+
+//styling using styled-components
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -67,10 +72,6 @@ const ArrowButton = styled.button`
     cursor: pointer;
     background: white;
     color: #e88504;
-    &:disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
-    }
 `;
 
 const HeartButton = styled.button<{ liked: string }>`
@@ -107,28 +108,27 @@ const MatchBanner = styled.div`
     pointer-events: none;
 `;
 
-const LikedList = styled.p`
-    color: #e88504;
-    margin-top: 1rem;
-    font-size: 0.95rem;
-    width: 420px;
-`;
-
 export default function PawSwipe() {
+
+    //fetch available pets for adoption from API
     const { data, error } = useSWR("/api/pet", fetcher);
+    //track current pet
     const [currentIndex, setCurrentIndex] = useState(0);
+    //control YOU MATCH! pop up
     const [showMatch, setShowMatch] = useState(false);
+    //track if the user has liked the pet
     const [liked, setLiked] = useState(false);
-    const [likedPets, setLikedPets] = useState<string[]>([]);
 
     if (error) return <h2>Error</h2>;
     if (!data) return <h2>Loading...</h2>;
 
+    //go to previous pet and reset liked state
     const prev = () => { setCurrentIndex(i => i - 1); setLiked(false); };
+    //go to next pet and reset liked state
     const next = () => { setCurrentIndex(i => i + 1); setLiked(false); };
 
+    //handles when users like the heart button and show the match feature
     const handleHeart = () => {
-        if (!liked) setLikedPets(prev => [...prev, pet.attributes.name]);
         setLiked(true);
         setShowMatch(true);
         setTimeout(() => setShowMatch(false), 1800);
@@ -158,9 +158,6 @@ export default function PawSwipe() {
                 <ArrowButton onClick={prev} disabled={currentIndex === 0}>◀</ArrowButton>
                 <ArrowButton onClick={next} disabled={currentIndex === data.length - 1}>▶</ArrowButton>
             </ButtonContainer>
-            {likedPets.length > 0 && (
-                <LikedList>🧡 {likedPets.join(", ")}</LikedList>
-            )}
         </Container>
     );
 }
