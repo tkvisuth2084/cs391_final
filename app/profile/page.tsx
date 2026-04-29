@@ -203,10 +203,10 @@ export default function ProfilePage() {
         fetch(`/api/profile?email=${email}`)
             .then(res => res.json())
             .then(data => {
-                setName(data.name)
-                setEmail(data.email)
-                setBio(data.bio)
-                setAvatarUrl(data.avatarUrl)
+                setName(data.name || "")
+                setEmail(data.email || "")
+                setBio(data.bio || "")
+                setAvatarUrl(data.avatarUrl || "")
             })
     }, [])
     function handleEdit() {
@@ -252,12 +252,14 @@ export default function ProfilePage() {
         <StyledPage>
             <StyledCard>
 
-                {/* ── Avatar + name ── */}
                 <AvatarSection>
-                    {avatarUrl
-                        ? <Avatar src={avatarUrl || "https://cdn2.thecatapi.com/images/8pv.jpg"} alt="Profile picture" />
-                        : <AvatarFallback>{name.charAt(0).toUpperCase()}</AvatarFallback>
-                    }
+                    <Avatar
+                        src={
+                            avatarUrl ||
+                            "https://cdn2.thecatapi.com/images/8pv.jpg"
+                        }
+                        alt="Profile picture"
+                    />
                     <AvatarInfo>
                         <UserName>{name}</UserName>
                         <UserEmail>{email}</UserEmail>
@@ -267,7 +269,7 @@ export default function ProfilePage() {
 
                 {success && <SuccessMsg>Profile updated successfully!</SuccessMsg>}
 
-                {/* ── View mode ── */}
+
                 {!editing && (
                     <>
                         <SectionTitle>About</SectionTitle>
@@ -277,7 +279,7 @@ export default function ProfilePage() {
                     </>
                 )}
 
-                {/* ── Edit mode ── */}
+
                 {editing && (
                     <>
                         <SectionTitle>Edit Profile</SectionTitle>
