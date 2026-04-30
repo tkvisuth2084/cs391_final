@@ -1,15 +1,17 @@
-//Name: Napasorn Visuthiwat BU ID: U29608302 wrote this file
+//Teammate that worked on this file: Napasorn Visuthiwat BU ID: U29608302
 
 "use client";
 import useSWR from "swr";
 import styled from "styled-components";
 import { useState } from "react";
 
-//fetch data
+// fetcher is passed to useSWR as the data-fetching function
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 
 //styling using styled-components
+
+//centered column layout
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -20,11 +22,14 @@ const Container = styled.div`
     background-color: #ffedce;
 `;
 
+
 const CardWrapper = styled.div`
     position: relative;
     width: 420px;
 `;
 
+
+//card styling
 const Card = styled.div`
     width: 420px;
     border-radius: 16px;
@@ -33,6 +38,7 @@ const Card = styled.div`
     box-shadow: 2px 2px 3px black;
     background: #e88504;
 `;
+
 
 const PetImage = styled.img`
     width: 100%;
@@ -74,6 +80,8 @@ const ArrowButton = styled.button`
     color: #e88504;
 `;
 
+//heart button styling
+//accept a liked prop (string) to toggle the icon color from orange to red
 const HeartButton = styled.button<{ liked: string }>`
     position: absolute;
     top: 10px;
@@ -110,11 +118,11 @@ const MatchBanner = styled.div`
 
 export default function PawSwipe() {
 
-    //fetch available pets for adoption from API
+    //fetch the full list of adoptable pets from internal API
     const { data, error } = useSWR("/api/pet", fetcher);
-    //track current pet
+    //track which pet in the array is being shown
     const [currentIndex, setCurrentIndex] = useState(0);
-    //control YOU MATCH! pop up
+    //control YOU MATCH! pop up after a like
     const [showMatch, setShowMatch] = useState(false);
     //track if the user has liked the pet
     const [liked, setLiked] = useState(false);
@@ -122,12 +130,13 @@ export default function PawSwipe() {
     if (error) return <h2>Error</h2>;
     if (!data) return <h2>Loading...</h2>;
 
-    //go to previous pet and reset liked state
+    //Move to the previous pet and reset the liked state
     const prev = () => { setCurrentIndex(i => i - 1); setLiked(false); };
-    //go to next pet and reset liked state
+    //move to the next pet and reset liked state
     const next = () => { setCurrentIndex(i => i + 1); setLiked(false); };
 
-    //handles when users like the heart button and show the match feature
+    //mark the current pet as liked and show the YOU MATCH! banner
+    //then hide it after 1.8 seconds with setTimeout
     const handleHeart = () => {
         setLiked(true);
         setShowMatch(true);
@@ -138,8 +147,10 @@ export default function PawSwipe() {
 
     return (
         <Container>
+            {/*Conditionally render the MatchBanner if showMatch is true*/}
             {showMatch && <MatchBanner>🐾 You Match!</MatchBanner>}
             <CardWrapper>
+                {/*pass like as a string*/}
                 <HeartButton onClick={handleHeart} liked={liked.toString()}>🧡</HeartButton>
                 <Card>
                     <PetImage
