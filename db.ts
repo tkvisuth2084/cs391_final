@@ -6,7 +6,7 @@ if (!MONGO_URI) {
     throw new Error("Something is wrong with your key");
 }
 
-const DB_NAME = "briianna_db_user";
+const DB_NAME = "tangkwadong2084_db_user";
 
 export const POSTS_COLLECTION = "posts-collection";
 
