@@ -1,3 +1,5 @@
+//created by Brianna Matey
+
 import { NextRequest, NextResponse } from 'next/server'
 import getCollection from '@/db'
 import type { User } from '@/types'
@@ -15,7 +17,6 @@ export async function POST(req: NextRequest) {
 
         const users = await getCollection('users')
 
-        // Find user by email and password
         const user = await users.findOne({ email, password }) as User | null
         if (!user) {
             return NextResponse.json(

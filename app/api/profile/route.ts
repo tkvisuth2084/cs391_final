@@ -1,8 +1,10 @@
+//Created by Brianna Matey
 import { NextRequest, NextResponse } from "next/server"
 import getCollection from "@/db"
 
 export async function GET(req: NextRequest) {
     try {
+
         const { searchParams } = new URL(req.url)
         const email = searchParams.get("email")
 

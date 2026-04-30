@@ -1,3 +1,4 @@
+//created by Brianna Matey
 import { Suspense } from 'react'
 import ProfilePage from './ProfilePage'
 

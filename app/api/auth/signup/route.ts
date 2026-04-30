@@ -1,3 +1,5 @@
+//created by Brianna Matey
+
 import { NextRequest, NextResponse } from 'next/server'
 import getCollection from '@/db'
 import type { User } from '@/types'
@@ -22,7 +24,7 @@ export async function POST(req: NextRequest) {
 
         const users = await getCollection('users')
 
-        // Check if email already exists
+
         const existing = await users.findOne({ email })
         if (existing) {
             return NextResponse.json(
@@ -31,7 +33,7 @@ export async function POST(req: NextRequest) {
             )
         }
 
-        // Insert new user
+
         const result = await users.insertOne({
             name,
             email,
